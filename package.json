@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://nzend.github.io/project_Car-Sharing/",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "formik": "^2.4.5",
