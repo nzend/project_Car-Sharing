@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import AppBar from 'components/AppBar/AppBar';
 import Home from 'pages/Home/Home';
+import Catalog from 'pages/Catalog/Catalog';
 
 
 
@@ -16,7 +17,7 @@ const App = () => {
         
         <Route
           path="/catalog"
-          element={<div>Hello-2</div>}
+          element={<Catalog/>}
         />
         <Route
           path="/favorites"
