@@ -1,0 +1,13 @@
+.home__container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.home__title {
+    font-family: monospace;
+    font-size: 32px;
+    color: white;
+}

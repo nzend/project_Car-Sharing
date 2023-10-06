@@ -1,0 +1,12 @@
+.container {
+    width: 1200px;
+    padding: 0 32px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #171717;
+    margin-bottom: 14px;
+  }
