@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
 import AppBar from 'components/AppBar/AppBar';
 import Home from 'pages/Home/Home';
 
