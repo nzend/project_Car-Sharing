@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { FilterForm } from './FilterBar.styled';
+import { FilterForm, FilterLabel } from './FilterBar.styled';
 
 const brandOptions = [
   { value: 'Toyota', label: 'Toyota' },
@@ -65,19 +65,19 @@ const FilterBar = () => {
 
   return (
     <FilterForm onSubmit={handleLoadCarsSubmit}>
-      <label>
-        Марка:
+      <FilterLabel>
+        Car brand
         <Select
           value={selectedBrand}
           onChange={handleBrandChange}
           options={brandOptions}
           isClearable
-          placeholder="Оберіть марку"
+          placeholder="Enter the text"
         />
-      </label>
+      </FilterLabel>
 
-      <label>
-        Ціна за годину:
+      <FilterLabel>
+        Price/ 1 hour
         <Select
           value={selectedPrice}
           onChange={handlePriceChange}
@@ -88,12 +88,12 @@ const FilterBar = () => {
             // Додайте більше варіантів цін
           ]}
           isClearable
-          placeholder="Оберіть ціну"
+          placeholder="To $"
         />
-      </label>
+      </FilterLabel>
 
-      <label>
-        Пробіг (км):
+      <FilterLabel>
+        Сar mileage / km
         <Select
           value={selectedMileage}
           onChange={handleMileageChange}
@@ -104,9 +104,24 @@ const FilterBar = () => {
             // Додайте більше варіантів пробігу
           ]}
           isClearable
-          placeholder="Оберіть пробіг"
+          placeholder="From"
         />
-      </label>
+      </FilterLabel>
+      <FilterLabel>
+        Сar mileage / km
+        <Select
+          value={selectedMileage}
+          onChange={handleMileageChange}
+          options={[
+            { value: '50000', label: '50000' },
+            { value: '55000', label: '55000' },
+            { value: '60000', label: '60000' },
+            // Додайте більше варіантів пробігу
+          ]}
+          isClearable
+          placeholder="to"
+        />
+      </FilterLabel>
 
       <button type="submit">Завантажити авто</button>
     </FilterForm>
