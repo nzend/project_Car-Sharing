@@ -13,14 +13,18 @@ import {
   selectStylesMax,
   selectStylesPrice,
 } from '../../utils/SelectsStyles';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAdverts } from '../../redux/adverts/operations';
+
 
 const brandOptions = [
-  { value: 'Toyota', label: 'Toyota' },
-  { value: 'Honda', label: 'Honda' },
-  { value: 'Ford', label: 'Ford' },
+  { value: 'Buick', label: 'Buick' },
+  { value: 'Volvo', label: 'Volvo' },
+  { value: 'HUMMER', label: 'HUMMER' },
 ];
 
 const FilterBar = () => {
+  const dispatch = useDispatch();
   const [cars, setCars] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
@@ -28,20 +32,8 @@ const FilterBar = () => {
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
 
   useEffect(() => {
-    async function fetchCars() {
-      try {
-        const response = await axios.get(
-          'https://651fd793906e276284c399ff.mockapi.io/api/adverts'
-        );
-        console.log(response.data);
-        setCars(response.data);
-      } catch (error) {
-        console.error('Помилка завантаження автомобілів:', error);
-      }
-    }
-
-    fetchCars();
-  }, []);
+    dispatch(getAdverts())
+  }, [dispatch]);
 
   const handleBrandChange = selectedOption => {
     setSelectedBrand(selectedOption);
@@ -60,27 +52,7 @@ const FilterBar = () => {
 
   const handleLoadCarsSubmit = async e => {
     e.preventDefault();
-    try {
-      const response = await axios.get(
-        'https://651fd793906e276284c399ff.mockapi.io/api/adverts',
-        {
-          params: {
-            brand: selectedBrand ? selectedBrand.value : undefined,
-            price: selectedPrice ? selectedPrice.value : undefined,
-            mileageMin: selectedMileageMin
-              ? selectedMileageMin.value
-              : undefined,
-            mileageMax: selectedMileageMax
-              ? selectedMileageMax.value
-              : undefined,
-          },
-        }
-      );
-      console.log(response);
-      setCars(response.data);
-    } catch (error) {
-      console.error('Помилка завантаження автомобілів:', error);
-    }
+   
   };
 
   return (
@@ -109,9 +81,9 @@ const FilterBar = () => {
             }
             onChange={handlePriceChange}
             options={[
-              { value: '20', label: '20' },
-              { value: '22', label: '22' },
-              { value: '25', label: '25' },
+              { value: '40', label: '40' },
+              { value: '50', label: '50' },
+              { value: '55', label: '55' },
               // Додайте більше варіантів цін
             ]}
             isClearable
