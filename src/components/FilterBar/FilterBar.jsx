@@ -6,50 +6,19 @@ import {
   FilterLabel,
   SubmitBtn,
   InputMilageWrapper,
-  InputMilageMin,
-  InputMilageMax,
 } from './FilterBar.styled';
+import {
+  selectStylesBrand,
+  selectStylesMin,
+  selectStylesMax,
+  selectStylesPrice,
+} from '../../utils/SelectsStyles';
 
 const brandOptions = [
   { value: 'Toyota', label: 'Toyota' },
   { value: 'Honda', label: 'Honda' },
   { value: 'Ford', label: 'Ford' },
 ];
-
-const selectStyles = {
-  control: provided => ({
-    ...provided,
-    border: 'none',
-    borderRadius: '14px',
-    backgroundColor: '#F7F7FB',
-    width: '224px',
-    padding: '4px 14px 4px 18px',
-    fontSize: '16px',
-    height: "48px",
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    height: '48px',
-    backgroundColor: state.isFocused ? 'white' : 'white',
-    color: state.isFocused ? '#121417' : ' rgba(18, 20, 23, 0.20);',
-    fontFamily: 'Manrope',
-    fontSize: '16px',
-    cursor: 'pointer',
-  }),
-  placeholder: provided => ({
-    ...provided,
-    fontWeight: '500',
-    color: '#121417',
-    fontFamily: 'Manrope',
-    fontSize: '18px',
-    lineHeight: '20px',
-  }),
-  menu: provided => ({
-    ...provided,
-    borderRadius: '14px',
-    padding: '14px 8px 14px 18px',
-  }),
-};
 
 const FilterBar = () => {
   const [cars, setCars] = useState([]);
@@ -125,7 +94,7 @@ const FilterBar = () => {
             options={brandOptions}
             isClearable
             placeholder="Enter the text"
-            styles={selectStyles}
+            styles={selectStylesBrand}
           />
         </InputMilageWrapper>
       </div>
@@ -133,7 +102,11 @@ const FilterBar = () => {
         <FilterLabel>Price/ 1 hour</FilterLabel>
         <InputMilageWrapper>
           <Select
-            value={selectedPrice}
+            value={
+              selectedPrice
+                ? { value: selectedPrice, label: `To ${selectedPrice.label} $` }
+                : null
+            }
             onChange={handlePriceChange}
             options={[
               { value: '20', label: '20' },
@@ -143,24 +116,63 @@ const FilterBar = () => {
             ]}
             isClearable
             placeholder="To $"
-            styles={selectStyles}
-            
+            styles={selectStylesPrice}
           />
         </InputMilageWrapper>
       </div>
       <div>
         <FilterLabel>Сar mileage / km</FilterLabel>
         <InputMilageWrapper>
-          <InputMilageMin
+          <Select
+            value={
+              selectedMileageMin
+                ? {
+                    value: selectedMileageMin,
+                    label: `From: ${selectedMileageMin.label}`,
+                  }
+                : null
+            }
+            onChange={handleMileageChangeMin}
+            options={[
+              { value: '20', label: '20' },
+              { value: '22', label: '22' },
+              { value: '25', label: '25' },
+              // Додайте більше варіантів цін
+            ]}
+            isClearable
+            placeholder="From:"
+            styles={selectStylesMin}
+          />
+          <Select
+            value={
+              selectedMileageMax
+                ? {
+                    value: selectedMileageMax,
+                    label: `to: ${selectedMileageMax.label}`,
+                  }
+                : null
+            }
+            onChange={handleMileageChangeMax}
+            options={[
+              { value: '20', label: '20' },
+              { value: '22', label: '22' },
+              { value: '25', label: '25' },
+              // Додайте більше варіантів цін
+            ]}
+            isClearable
+            placeholder="to:"
+            styles={selectStylesMax}
+          />
+          {/* <InputMilageMin
+            value={selectedMileageMin}
             onChange={handleMileageChangeMin}
             placeholder="From"
-            styles={selectStyles}
           />
           <InputMilageMax
+            value={selectedMileageMax}
             onChange={handleMileageChangeMax}
             placeholder="to"
-            styles={selectStyles}
-          />
+          /> */}
         </InputMilageWrapper>
       </div>
 
