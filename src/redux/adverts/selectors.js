@@ -1,4 +1,4 @@
-export const selectItems = state => state.exercises.items;
+export const selectAdverts = state => state.adverts.items;
 
-export const selectIsLoading = state => state.exercises.isLoading;
+export const selectIsLoading = state => state.isLoading;
 

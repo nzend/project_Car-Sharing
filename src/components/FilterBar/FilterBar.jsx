@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import axios from 'axios';
+
 import {
   FilterForm,
   FilterLabel,
@@ -15,7 +15,8 @@ import {
 } from '../../utils/SelectsStyles';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAdverts } from '../../redux/adverts/operations';
-
+import { selectAdverts } from '../../redux/adverts/selectors';
+import { setStatusFilter } from '../../redux/filters/slice';
 
 const brandOptions = [
   { value: 'Buick', label: 'Buick' },
@@ -24,18 +25,21 @@ const brandOptions = [
 ];
 
 const FilterBar = () => {
+  let adverts = useSelector(selectAdverts);
+  console.log('ADVERTS', adverts);
   const dispatch = useDispatch();
-  const [cars, setCars] = useState([]);
+  
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
 
   useEffect(() => {
-    dispatch(getAdverts())
+    dispatch(getAdverts());
   }, [dispatch]);
 
   const handleBrandChange = selectedOption => {
+    console.log(selectedOption);
     setSelectedBrand(selectedOption);
   };
 
@@ -52,7 +56,18 @@ const FilterBar = () => {
 
   const handleLoadCarsSubmit = async e => {
     e.preventDefault();
-   
+    console.log('filters Sending');
+    const filter = {
+      brand: selectedBrand ? selectedBrand.value : null,
+      price: selectedPrice ? selectedPrice.value : null,
+      minMileage: selectedMileageMin ? selectedMileageMin.value : null,
+      maxMileage: selectedMileageMax ? selectedMileageMax.value : null ,
+    };
+    dispatch(
+      setStatusFilter({
+        filter,
+      })
+    );
   };
 
   return (
