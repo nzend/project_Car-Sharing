@@ -1,13 +1,11 @@
-import AdvertsItem from 'components/AdvertsItem/AdvertsItem';
-import AdvertsWrapper from 'components/AdvertsWrapper/AdvertsWrapper';
-import FilterBar from 'components/FilterBar/FilterBar';
+import { Advert, CarImg, CarTitle } from './AdvertsItem.styled';
 const item = {
   id: 9582,
   year: 2008,
   make: 'Buick',
   model: 'Enclave',
   type: 'SUV',
-  img: 'https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/buick_enclave.jpg',
+  img: 'https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/mini_convertible.jpg',
   description:
     'The Buick Enclave is a stylish and spacious SUV known for its comfortable ride and luxurious features.',
   fuelConsumption: '10.5',
@@ -21,22 +19,22 @@ const item = {
     "Minimum age: 25\nValid driver's license\nSecurity deposit required",
   mileage: 5858,
 };
-const Catalog = () => {
+
+const AdvertsItem = ({ items, children, ...props }) => {
   return (
-    <>
-      <FilterBar />
-      <AdvertsWrapper>
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-        <AdvertsItem />
-      </AdvertsWrapper>
-    </>
+    <Advert>
+      <CarImg src={item.img} alt="" />
+      <CarTitle>
+        <span>
+          {item.make}, {item.year}
+        </span>
+              <span>{item.rentalPrice}</span>
+              <ul>
+                 
+              </ul>
+      </CarTitle>
+    </Advert>
   );
 };
 
-export default Catalog;
+export default AdvertsItem;

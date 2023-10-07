@@ -11,12 +11,12 @@ export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-      setStatusFilter: (state, { payload }) => {
-          console.log("PAY", payload);
-          state.brand = payload.filter.brand;
-          state.price = Number(payload.filter.price);
-          state.minMileage = Number(payload.filter.minMileage);
-          state.maxMileage = Number(payload.filter.maxMileage);
+    setStatusFilter: (state, { payload }) => {
+      console.log('PAY', payload);
+      state.brand = payload.filter.brand;
+      state.price = Number(payload.filter.price);
+      state.minMileage = Number(payload.filter.minMileage);
+      state.maxMileage = Number(payload.filter.maxMileage);
     },
   },
 });

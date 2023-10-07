@@ -5,6 +5,7 @@ export const FilterForm = styled.form`
   justify-content: center;
   align-items: flex-end;
   gap: 18px;
+  margin-bottom: 50px;
 `;
 
 export const FilterLabel = styled.label`
