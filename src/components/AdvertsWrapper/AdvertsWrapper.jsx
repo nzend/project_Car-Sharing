@@ -17,9 +17,8 @@ const AdvertsWrapper = ({ items }) => {
   const dispatch = useDispatch();
 
   const favorites = useSelector(selectFavoritesId);
-  console.log(favorites);
+
   const hangleIsFavorite = itemId => {
-    console.log(favorites.includes(itemId));
    return favorites.includes(itemId);
   };
 
@@ -33,7 +32,6 @@ const AdvertsWrapper = ({ items }) => {
     let newCards = pagination(filteredCards, page);
 
     setVisibleCards(newCards);
-    console.log('filteredCards', filteredCards);
   }, [page, items, filters]);
 
   return (

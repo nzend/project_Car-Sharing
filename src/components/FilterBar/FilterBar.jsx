@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 
 import {
@@ -46,7 +46,6 @@ const FilterBar = () => {
 
   const handleLoadCarsSubmit = async e => {
     e.preventDefault();
-    console.log('filters Sending');
     const filter = {
       brand: selectedBrand ? selectedBrand.value : null,
       price: selectedPrice ? selectedPrice.value : null,

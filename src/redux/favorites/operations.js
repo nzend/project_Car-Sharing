@@ -14,7 +14,6 @@ export const getFavorites = createAsyncThunk(
   {
     condition: (_, { getState, extra }) => {
       const state = getState();
-      console.log('state:', state);
       if (state.adverts.items.length > 1) {
         return false;
       }

@@ -13,7 +13,7 @@ import {
 import { getAdress } from '../../utils/getAdress';
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addFavoritesId, removeFavoritesId } from '../../redux/favorites/slice';
 
 
