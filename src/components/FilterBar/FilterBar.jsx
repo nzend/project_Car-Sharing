@@ -19,6 +19,7 @@ import { setStatusFilter } from '../../redux/filters/slice';
 import { getOptions } from '../../utils/createFiltersOptions';
 import { changePage } from '../../redux/adverts/slice';
 
+
 const FilterBar = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);

@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import AppBar from 'components/AppBar/AppBar';
+// import Favorites from 'pages/Favorites/Favorites';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Catalog = lazy(() => import('pages/Catalog/Catalog'));
-// const Favorites = lazy(() => import('../pages/Favorites/Favorites'));
+const Favorites = lazy(() => import('pages/Favorites/Favorites'));
 const App = () => {
   return (
     <Routes>
@@ -12,7 +13,7 @@ const App = () => {
         <Route index element={<Home />} />
 
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/favorites" element={<div>Hello-3</div>} />
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );
