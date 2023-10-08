@@ -7,17 +7,14 @@ import { selectFavoritesId } from '../../redux/favorites/selectors';
 import { getAdverts } from '../../redux/adverts/operations';
 import { changePage } from '../../redux/adverts/slice';
 
-
-
 const Favorites = () => {
+  const favoritesIds = useSelector(selectFavoritesId);
+  const adverts = useSelector(selectAdverts);
   const dispatch = useDispatch();
-     useEffect(() => {
-         dispatch(getAdverts());
-         dispatch(changePage(1));
-     }, [dispatch]);
-  let favoritesIds = useSelector(selectFavoritesId);
-  console.log(favoritesIds);
-  let adverts = useSelector(selectAdverts);
+  useEffect(() => {
+    dispatch(getAdverts());
+    dispatch(changePage(1));
+  }, [dispatch]);
 
   let FavoritesCards = adverts.filter(item => {
     return favoritesIds.includes(item.id);
