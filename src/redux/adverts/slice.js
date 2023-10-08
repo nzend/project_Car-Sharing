@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAdverts, addFavorite } from './operations';
+import { getAdverts } from './operations';
 
 export const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
     items: [],
+
     page: 1,
     error: null,
     isLoading: false,
@@ -13,17 +14,6 @@ export const advertsSlice = createSlice({
   reducers: {
     changePage: (state, action) => {
       state.page = action.payload;
-    },
-    changeStatusFilter: (state, action) => {
-      state.getFilters = action.payload;
-    },
-    changeStatusTimer: (state, action) => {
-      state.isTimerOn = action.payload;
-    },
-    addSearchExerciseParams: {
-      reducer(state, action) {
-        state.searchParams = action.payload;
-      },
     },
   },
   extraReducers: builder => {
@@ -40,26 +30,8 @@ export const advertsSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
-
-    builder.addCase(addFavorite.fulfilled, state => {
-      state.isLoading = false;
-      state.error = null;
-    });
-    builder.addCase(addFavorite.rejected, (state, action) => {
-      state.error = action.payload;
-      state.isLoading = false;
-    });
-    builder.addCase(addFavorite.pending, state => {
-      // state.isLoading = true;
-      state.error = null;
-    });
   },
 });
-export const {
-  changeStatusFilter,
-  changeStatusTimer,
-  addSearchExerciseParams,
-  changePage,
-} = advertsSlice.actions;
+export const { changePage, addFavoritesId } = advertsSlice.actions;
 
 export default advertsSlice.reducer;

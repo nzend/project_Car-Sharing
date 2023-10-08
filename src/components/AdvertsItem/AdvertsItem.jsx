@@ -13,13 +13,30 @@ import {
 import { getAdress } from '../../utils/getAdress';
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-const AdvertsItem = ({ item, children, ...props }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavoritesId, removeFavoritesId } from '../../redux/favorites/slice';
+
+
+
+const AdvertsItem = ({ item, isFavorite }) => {
+  const dispatch = useDispatch();
+  console.log("isFAV", isFavorite);
+  const [isFavoriteItem, setIsFavoriteItem] = useState(isFavorite);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const address = getAdress(item.address);
 
-  const handleIsFavorite = () => {
-    setIsFavorite(!isFavorite);
+  const handleIsFavorite = (itemId) => {
+    console.log(itemId);
+    console.log(isFavorite);
+    if (isFavoriteItem) {
+      dispatch(removeFavoritesId(itemId));
+      setIsFavoriteItem(!isFavoriteItem);
+      return;
+    } else {
+      dispatch(addFavoritesId(itemId));
+      setIsFavoriteItem(!isFavoriteItem);
+      return;
+    }
   };
 
   const handleOpenModal = () => {
@@ -28,10 +45,10 @@ const AdvertsItem = ({ item, children, ...props }) => {
   };
   return (
     <AdvertItem>
-      {isFavorite ? (
-        <IsFavoriteIcon onClick={handleIsFavorite} />
+      {isFavoriteItem ? (
+        <IsFavoriteIcon onClick={() => handleIsFavorite(item.id)} />
       ) : (
-        <IsNotFavoriteIcon onClick={handleIsFavorite} />
+        <IsNotFavoriteIcon onClick={() => handleIsFavorite(item.id)} />
       )}
 
       <CarImg src={item.img} alt={item.make} />

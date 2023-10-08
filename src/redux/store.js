@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import advertsSlice from './adverts/slice';
 import filterSlice from './filters/slice';
+import favoritesSlice from './favorites/slice';
 
 import {
   persistStore,
@@ -16,30 +17,22 @@ import {
 } from 'redux-persist';
 
 const advertsPersistConfig = {
-  key: 'favorite',
+  key: 'favorites',
   storage,
-  whitelist: ['favorite'],
-};
-const filtersPersistConfig = {
-  key: 'brand',
-  storage,
-  whitelist: ['favorite'],
+  whitelist: ['favorites'],
 };
 
-const persistedAdvertsReducer = persistReducer(
+const persistedFavoritesReducer = persistReducer(
   advertsPersistConfig,
-  advertsSlice
-);
-const persistedFiltersReducer = persistReducer(
-  filtersPersistConfig,
-  filterSlice
+  favoritesSlice
 );
 
 // Store
 export const store = configureStore({
   reducer: {
-    adverts: persistedAdvertsReducer,
-    filters: persistedFiltersReducer,
+    adverts: advertsSlice,
+    filters: filterSlice,
+    favorites: persistedFavoritesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

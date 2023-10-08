@@ -57,10 +57,11 @@ body {
   margin: 0;
   font-family: 'Manrope', sans-serif;
   color: #212121;
-  background-color: #111111;
+  background-color: #FFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 img {
   display: block;

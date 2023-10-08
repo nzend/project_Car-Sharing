@@ -22,7 +22,7 @@ export const ModalWrap = styled.div`
   padding: 40px 35px;
   border-radius: 24px;
   background-color: #FFF;
-  z-index: 1;
+  z-index: 555;
 `;
 
 export const ButtonExit = styled.button`

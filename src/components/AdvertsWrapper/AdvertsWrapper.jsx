@@ -11,14 +11,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePage } from 'redux/adverts/slice';
 import { selectPage } from '../../redux/adverts/selectors';
 import { filtering } from '../../utils/advertsFilter';
-
+import { selectFavoritesId } from 'redux/favorites/selectors';
 
 const AdvertsWrapper = ({ items }) => {
   const dispatch = useDispatch();
+
+  const favorites = useSelector(selectFavoritesId);
+  console.log(favorites);
+  const hangleIsFavorite = itemId => {
+    console.log(favorites.includes(itemId));
+   return favorites.includes(itemId);
+  };
+
   const filters = useSelector(selectFilter);
   let page = useSelector(selectPage);
-  console.log(page);
-  console.log('FILTERS', filters);
 
   const [visibleCards, setVisibleCards] = useState([]);
 
@@ -34,7 +40,13 @@ const AdvertsWrapper = ({ items }) => {
     <AdvertsContainer>
       <AdvertsList>
         {visibleCards.map(item => {
-          return <AdvertsItem key={item.id} item={item} />;
+          return (
+            <AdvertsItem
+              key={item.id}
+              item={item}
+              isFavorite={hangleIsFavorite(item.id)}
+            />
+          );
         })}
       </AdvertsList>
 
@@ -43,7 +55,6 @@ const AdvertsWrapper = ({ items }) => {
           Load more
         </LoadMoreBtn>
       )}
-      
     </AdvertsContainer>
   );
 };

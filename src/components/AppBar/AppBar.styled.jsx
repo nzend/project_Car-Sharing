@@ -1,18 +1,19 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  position: relative;
   width: 1280px;
+  height: 100vh - 100%;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
-  padding: 32px 0;
+  padding: 50px 0 32px;
 `;
 
 export const SideBar = styled.aside`
   position: fixed;
   top: 0;
-  left: 220px;
+  /* left: 220px; */
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,3 +23,4 @@ export const SideBar = styled.aside`
   box-shadow: 0px -7px 16px 0px rgba(255, 255, 255, 0.2) inset;
   border: 1px solid #939393;
 `;
+

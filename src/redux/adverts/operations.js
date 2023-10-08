@@ -15,7 +15,6 @@ export const getAdverts = createAsyncThunk(
   {
     condition: (_, { getState, extra }) => {
           const state = getState();
-          console.log("state:", state);
       if (state.adverts.items.length > 1) {
         return false;
       }
@@ -23,19 +22,5 @@ export const getAdverts = createAsyncThunk(
   }
 );
 
-export const addFavorite = createAsyncThunk(
-  'addFavorite',
-  async (favoriteAdvert, thunkAPI) => {
-    try {
-      const { data } = await axios.post(
-        '/favorite',
-        favoriteAdvert
-      );
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
 
 
