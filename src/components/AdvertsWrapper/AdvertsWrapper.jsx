@@ -12,6 +12,7 @@ import { changePage } from 'redux/adverts/slice';
 import { selectPage } from '../../redux/adverts/selectors';
 import { filtering } from '../../utils/advertsFilter';
 
+
 const AdvertsWrapper = ({ items }) => {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilter);
@@ -42,6 +43,7 @@ const AdvertsWrapper = ({ items }) => {
           Load more
         </LoadMoreBtn>
       )}
+      
     </AdvertsContainer>
   );
 };
