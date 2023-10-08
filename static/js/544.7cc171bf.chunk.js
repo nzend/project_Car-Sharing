@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkcar_sharing=self.webpackChunkcar_sharing||[]).push([[544],{9544:function(i,e,n){n.r(e);var t=n(184);e.default=function(){return(0,t.jsx)("div",{children:(0,t.jsxs)("p",{children:["Hello world. This is my educational project in which I practice component React development with state saving in Redax. Routing with private and public routes. With user registration and authorization.",(0,t.jsx)("br",{}),"Enjoy."]})})}}}]);
-//# sourceMappingURL=544.7cc171bf.chunk.js.map
