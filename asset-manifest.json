@@ -1,13 +1,25 @@
 {
   "files": {
-    "main.css": "/project_Car-Sharing/static/css/main.d8d20c80.css",
-    "main.js": "/project_Car-Sharing/static/js/main.3c45c122.js",
+    "main.css": "/project_Car-Sharing/static/css/main.ce7129a2.css",
+    "main.js": "/project_Car-Sharing/static/js/main.b6d414d4.js",
+    "static/js/544.7cc171bf.chunk.js": "/project_Car-Sharing/static/js/544.7cc171bf.chunk.js",
+    "static/js/65.bd25c338.chunk.js": "/project_Car-Sharing/static/js/65.bd25c338.chunk.js",
+    "static/js/513.3927ed0b.chunk.js": "/project_Car-Sharing/static/js/513.3927ed0b.chunk.js",
+    "static/media/Montserrat-Bold.ttf": "/project_Car-Sharing/static/media/Montserrat-Bold.50f0257aa1e905f4bfaf.ttf",
+    "static/media/Montserrat-Medium.ttf": "/project_Car-Sharing/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
+    "static/media/Montserrat-Regular.ttf": "/project_Car-Sharing/static/media/Montserrat-Regular.24785cc015b27a3e964b.ttf",
+    "static/media/Manrope-Medium.ttf": "/project_Car-Sharing/static/media/Manrope-Medium.08894ccb04665d1a9d53.ttf",
+    "static/media/Manrope-Regular.ttf": "/project_Car-Sharing/static/media/Manrope-Regular.a9b9e09fe6b69741f316.ttf",
+    "static/media/Manrope-Bold.ttf": "/project_Car-Sharing/static/media/Manrope-Bold.47f6d7143da9d8c0e480.ttf",
     "index.html": "/project_Car-Sharing/index.html",
-    "main.d8d20c80.css.map": "/project_Car-Sharing/static/css/main.d8d20c80.css.map",
-    "main.3c45c122.js.map": "/project_Car-Sharing/static/js/main.3c45c122.js.map"
+    "main.ce7129a2.css.map": "/project_Car-Sharing/static/css/main.ce7129a2.css.map",
+    "main.b6d414d4.js.map": "/project_Car-Sharing/static/js/main.b6d414d4.js.map",
+    "544.7cc171bf.chunk.js.map": "/project_Car-Sharing/static/js/544.7cc171bf.chunk.js.map",
+    "65.bd25c338.chunk.js.map": "/project_Car-Sharing/static/js/65.bd25c338.chunk.js.map",
+    "513.3927ed0b.chunk.js.map": "/project_Car-Sharing/static/js/513.3927ed0b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8d20c80.css",
-    "static/js/main.3c45c122.js"
+    "static/css/main.ce7129a2.css",
+    "static/js/main.b6d414d4.js"
   ]
 }
