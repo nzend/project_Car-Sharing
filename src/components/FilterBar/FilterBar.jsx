@@ -17,22 +17,55 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAdverts } from '../../redux/adverts/operations';
 import { selectAdverts } from '../../redux/adverts/selectors';
 import { setStatusFilter } from '../../redux/filters/slice';
-
-const brandOptions = [
-  { value: 'Buick', label: 'Buick' },
-  { value: 'Volvo', label: 'Volvo' },
-  { value: 'HUMMER', label: 'HUMMER' },
-];
+import {
+  generateCategoriesList,
+  generatePriceOptions,
+  generateMileageOptions,
+} from '../../utils/createFiltersOptions';
 
 const FilterBar = () => {
+   const dispatch = useDispatch();
   let adverts = useSelector(selectAdverts);
-  console.log('ADVERTS', adverts);
-  const dispatch = useDispatch();
-  
+  let mileageOptionsMin = generateMileageOptions(adverts).map(option => {
+    return { value: option, label: option };
+  });
+  let mileageOptionsMax = generateMileageOptions(adverts).map(option => {
+    return { value: option, label: option };
+  });
+
+  const priceOptions = generatePriceOptions(adverts).map(option => {
+    return { value: option, label: option };
+  });
+
+  const brandOptions = generateCategoriesList(adverts).map(option => {
+    return { value: option, label: option };
+  });
+
+ 
+
+  const [minMilage, setMinMilage] = useState(mileageOptionsMin);
+
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
+
+  useEffect(() => {
+    const correctOptionsMax = (min, max) => {
+     
+      if (selectedMileageMin === null) {
+        console.log('ISNULL');
+        return;
+      }
+      console.log(min.value);
+      const newArray = mileageOptionsMax.filter(option => {
+        return option >= min.value;
+      });
+      mileageOptionsMax = newArray;
+    };
+
+    correctOptionsMax(selectedMileageMin);
+  }, [mileageOptionsMax, mileageOptionsMin, selectedMileageMin]);
 
   useEffect(() => {
     dispatch(getAdverts());
@@ -61,7 +94,7 @@ const FilterBar = () => {
       brand: selectedBrand ? selectedBrand.value : null,
       price: selectedPrice ? selectedPrice.value : null,
       minMileage: selectedMileageMin ? selectedMileageMin.value : null,
-      maxMileage: selectedMileageMax ? selectedMileageMax.value : null ,
+      maxMileage: selectedMileageMax ? selectedMileageMax.value : null,
     };
     dispatch(
       setStatusFilter({
@@ -95,12 +128,7 @@ const FilterBar = () => {
                 : null
             }
             onChange={handlePriceChange}
-            options={[
-              { value: '40', label: '40' },
-              { value: '50', label: '50' },
-              { value: '55', label: '55' },
-              // Додайте більше варіантів цін
-            ]}
+            options={priceOptions}
             isClearable
             placeholder="To $"
             styles={selectStylesPrice}
@@ -120,12 +148,7 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMin}
-            options={[
-              { value: '20', label: '20' },
-              { value: '22', label: '22' },
-              { value: '25', label: '25' },
-              // Додайте більше варіантів цін
-            ]}
+            options={minMilage}
             isClearable
             placeholder="From:"
             styles={selectStylesMin}
@@ -140,12 +163,7 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMax}
-            options={[
-              { value: '20', label: '20' },
-              { value: '22', label: '22' },
-              { value: '25', label: '25' },
-              // Додайте більше варіантів цін
-            ]}
+            options={mileageOptionsMax}
             isClearable
             placeholder="to:"
             styles={selectStylesMax}
