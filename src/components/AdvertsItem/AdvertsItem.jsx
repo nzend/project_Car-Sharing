@@ -20,14 +20,11 @@ import { addFavoritesId, removeFavoritesId } from '../../redux/favorites/slice';
 
 const AdvertsItem = ({ item, isFavorite }) => {
   const dispatch = useDispatch();
-  console.log("isFAV", isFavorite);
   const [isFavoriteItem, setIsFavoriteItem] = useState(isFavorite);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const address = getAdress(item.address);
 
   const handleIsFavorite = (itemId) => {
-    console.log(itemId);
-    console.log(isFavorite);
     if (isFavoriteItem) {
       dispatch(removeFavoritesId(itemId));
       setIsFavoriteItem(!isFavoriteItem);
@@ -40,7 +37,7 @@ const AdvertsItem = ({ item, isFavorite }) => {
   };
 
   const handleOpenModal = () => {
-    console.log('Open modal');
+ 
     setIsModalOpen(!isModalOpen);
   };
   return (

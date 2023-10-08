@@ -1,4 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { changePage } from '../../redux/adverts/slice';
+import { useEffect } from 'react';
+
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changePage(1));
+  }, [dispatch]);
   return (
     <div>
       <p>
