@@ -1,3 +1,5 @@
+
+
 export const generateCategoriesList = items => {
   const categories = [...new Set(items.map(item => item.make))];
   return categories;
@@ -36,3 +38,25 @@ export const generateMileageOptions = items => {
 
   return options;
 };
+
+
+export const getOptions = (adverts) => {
+  const options = {
+    mileageOptionsMin: generateMileageOptions(adverts).map(option => {
+      return { value: option, label: option };
+    }),
+    mileageOptionsMax: generateMileageOptions(adverts).map(option => {
+      return { value: option, label: option };
+    }),
+    priceOptions: generatePriceOptions(adverts).map(option => {
+      return { value: option, label: option };
+    }),
+    brandOptions: generateCategoriesList(adverts).map(option => {
+      return { value: option, label: option };
+    }),
+  };
+  return options;
+} ;
+
+
+ 

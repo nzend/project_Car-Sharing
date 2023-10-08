@@ -1,22 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  brand: '',
-  price: null,
-  minMileage: null,
-  maxMileage: null,
+  filters: {
+    brand: '',
+    price: null,
+    minMileage: null,
+    maxMileage: null,
+  },
 };
 
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setStatusFilter: (state, { payload }) => {
-      console.log('PAY', payload);
-      state.brand = payload.filter.brand;
-      state.price = Number(payload.filter.price);
-      state.minMileage = Number(payload.filter.minMileage);
-      state.maxMileage = Number(payload.filter.maxMileage);
+    setStatusFilter: ({filters}, { payload }) => {
+   
+      filters.brand = payload.filter.brand;
+      filters.price = Number(payload.filter.price);
+      filters.minMileage = Number(payload.filter.minMileage);
+      filters.maxMileage = Number(payload.filter.maxMileage);
     },
   },
 });

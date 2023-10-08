@@ -5,11 +5,15 @@ export const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
     items: [],
+    page: 1,
     error: null,
     isLoading: false,
   },
 
   reducers: {
+    changePage: (state, action) => {
+      state.page = action.payload;
+    },
     changeStatusFilter: (state, action) => {
       state.getFilters = action.payload;
     },
@@ -27,7 +31,6 @@ export const advertsSlice = createSlice({
       state.items = action.payload;
       state.error = null;
       state.isLoading = false;
-     
     });
     builder.addCase(getAdverts.rejected, (state, action) => {
       state.error = action.payload;
@@ -50,10 +53,13 @@ export const advertsSlice = createSlice({
       // state.isLoading = true;
       state.error = null;
     });
- 
   },
 });
-export const { changeStatusFilter, changeStatusTimer, addSearchExerciseParams } =
-  advertsSlice.actions;
+export const {
+  changeStatusFilter,
+  changeStatusTimer,
+  addSearchExerciseParams,
+  changePage,
+} = advertsSlice.actions;
 
 export default advertsSlice.reducer;

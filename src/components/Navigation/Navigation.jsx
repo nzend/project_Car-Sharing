@@ -18,7 +18,7 @@ const Navigation = () => {
   return (
     <>
       <NavigationLink to="/">
-        <Logo width={50} height={50} />
+        <Logo />
       </NavigationLink>
 
       <Menu>MENU</Menu>

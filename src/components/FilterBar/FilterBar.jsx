@@ -14,65 +14,22 @@ import {
   selectStylesPrice,
 } from '../../utils/SelectsStyles';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAdverts } from '../../redux/adverts/operations';
 import { selectAdverts } from '../../redux/adverts/selectors';
 import { setStatusFilter } from '../../redux/filters/slice';
-import {
-  generateCategoriesList,
-  generatePriceOptions,
-  generateMileageOptions,
-} from '../../utils/createFiltersOptions';
+import { getOptions } from '../../utils/createFiltersOptions';
+import { changePage } from '../../redux/adverts/slice';
 
 const FilterBar = () => {
-   const dispatch = useDispatch();
-  let adverts = useSelector(selectAdverts);
-  let mileageOptionsMin = generateMileageOptions(adverts).map(option => {
-    return { value: option, label: option };
-  });
-  let mileageOptionsMax = generateMileageOptions(adverts).map(option => {
-    return { value: option, label: option };
-  });
-
-  const priceOptions = generatePriceOptions(adverts).map(option => {
-    return { value: option, label: option };
-  });
-
-  const brandOptions = generateCategoriesList(adverts).map(option => {
-    return { value: option, label: option };
-  });
-
- 
-
-  const [minMilage, setMinMilage] = useState(mileageOptionsMin);
+  const dispatch = useDispatch();
+  const adverts = useSelector(selectAdverts);
+  const options = getOptions(adverts);
 
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
 
-  useEffect(() => {
-    const correctOptionsMax = (min, max) => {
-     
-      if (selectedMileageMin === null) {
-        console.log('ISNULL');
-        return;
-      }
-      console.log(min.value);
-      const newArray = mileageOptionsMax.filter(option => {
-        return option >= min.value;
-      });
-      mileageOptionsMax = newArray;
-    };
-
-    correctOptionsMax(selectedMileageMin);
-  }, [mileageOptionsMax, mileageOptionsMin, selectedMileageMin]);
-
-  useEffect(() => {
-    dispatch(getAdverts());
-  }, [dispatch]);
-
   const handleBrandChange = selectedOption => {
-    console.log(selectedOption);
     setSelectedBrand(selectedOption);
   };
 
@@ -96,47 +53,57 @@ const FilterBar = () => {
       minMileage: selectedMileageMin ? selectedMileageMin.value : null,
       maxMileage: selectedMileageMax ? selectedMileageMax.value : null,
     };
+
     dispatch(
       setStatusFilter({
         filter,
       })
     );
+    dispatch(changePage(1));
   };
 
   return (
     <FilterForm onSubmit={handleLoadCarsSubmit}>
       <div>
-        <FilterLabel>Car brand</FilterLabel>
-        <InputMilageWrapper>
-          <Select
-            value={selectedBrand}
-            onChange={handleBrandChange}
-            options={brandOptions}
-            isClearable
-            placeholder="Enter the text"
-            styles={selectStylesBrand}
-          />
-        </InputMilageWrapper>
+        <FilterLabel>
+          Car brand
+          <InputMilageWrapper>
+            <Select
+              value={selectedBrand}
+              onChange={handleBrandChange}
+              options={options.brandOptions}
+              isClearable
+              placeholder="Enter the text"
+              styles={selectStylesBrand}
+            />
+          </InputMilageWrapper>
+        </FilterLabel>
       </div>
       <div>
-        <FilterLabel>Price/ 1 hour</FilterLabel>
-        <InputMilageWrapper>
-          <Select
-            value={
-              selectedPrice
-                ? { value: selectedPrice, label: `To ${selectedPrice.label} $` }
-                : null
-            }
-            onChange={handlePriceChange}
-            options={priceOptions}
-            isClearable
-            placeholder="To $"
-            styles={selectStylesPrice}
-          />
-        </InputMilageWrapper>
+        <FilterLabel>
+          Price/ 1 hour
+          <InputMilageWrapper>
+            <Select
+              value={
+                selectedPrice
+                  ? {
+                      value: selectedPrice,
+                      label: `To ${selectedPrice.label} $`,
+                    }
+                  : null
+              }
+              onChange={handlePriceChange}
+              options={options.priceOptions}
+              isSearchable={false}
+              isClearable
+              placeholder="To $"
+              styles={selectStylesPrice}
+            />
+          </InputMilageWrapper>
+        </FilterLabel>
       </div>
       <div>
-        <FilterLabel>Сar mileage / km</FilterLabel>
+        <FilterLabel>Сar mileage / km </FilterLabel>
         <InputMilageWrapper>
           <Select
             value={
@@ -148,11 +115,13 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMin}
-            options={minMilage}
+            options={options.mileageOptionsMin}
             isClearable
+            isSearchable={false}
             placeholder="From:"
             styles={selectStylesMin}
           />
+
           <Select
             value={
               selectedMileageMax
@@ -163,21 +132,12 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMax}
-            options={mileageOptionsMax}
+            options={options.mileageOptionsMax}
+            isSearchable={false}
             isClearable
             placeholder="to:"
             styles={selectStylesMax}
           />
-          {/* <InputMilageMin
-            value={selectedMileageMin}
-            onChange={handleMileageChangeMin}
-            placeholder="From"
-          />
-          <InputMilageMax
-            value={selectedMileageMax}
-            onChange={handleMileageChangeMax}
-            placeholder="to"
-          /> */}
         </InputMilageWrapper>
       </div>
 
