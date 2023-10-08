@@ -1,10 +1,23 @@
-import FilterBar from "components/FilterBar/FilterBar";
 
+import AdvertsWrapper from 'components/AdvertsWrapper/AdvertsWrapper';
+import FilterBar from 'components/FilterBar/FilterBar';
+import { selectAdverts } from '../../redux/adverts/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { getAdverts } from '../../redux/adverts/operations';
 
 const Catalog = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAdverts());
+  }, [dispatch]);
+
+  let adverts = useSelector(selectAdverts);
   return (
-      <FilterBar/>
-    
+    <>
+      <FilterBar />
+      <AdvertsWrapper items={adverts} />
+    </>
   );
 };
 

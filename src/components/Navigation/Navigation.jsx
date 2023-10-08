@@ -1,8 +1,3 @@
-import { NavLink } from 'react-router-dom';
-import { BiHomeAlt2 } from 'react-icons/bi';
-import { MdFavoriteBorder } from 'react-icons/md';
-import { GiCityCar } from 'react-icons/gi';
-
 import {
   NavigationList,
   NavigationItem,
@@ -21,7 +16,7 @@ const Navigation = () => {
   return (
     <>
       <NavigationLink to="/">
-        <Logo width={50} height={50} />
+        <Logo />
       </NavigationLink>
 
       <Menu>MENU</Menu>
@@ -40,7 +35,7 @@ const Navigation = () => {
               to="/catalog"
               style={({ isActive }) => (isActive ? activeClassName : undefined)}
             >
-              <IconCatalog />
+              <IconFavorite />
             </NavigationLink>
           </NavigationItem>
           <NavigationItem>
@@ -48,7 +43,7 @@ const Navigation = () => {
               to="/favorites"
               style={({ isActive }) => (isActive ? activeClassName : undefined)}
             >
-              <IconFavorite />
+              <IconCatalog />
             </NavigationLink>
           </NavigationItem>
         </NavigationList>

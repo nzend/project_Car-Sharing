@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
-import axios from 'axios';
-import { FilterForm } from './FilterBar.styled';
 
-const brandOptions = [
-  { value: 'Toyota', label: 'Toyota' },
-  { value: 'Honda', label: 'Honda' },
-  { value: 'Ford', label: 'Ford' },
-];
+import {
+  FilterForm,
+  FilterLabel,
+  SubmitBtn,
+  InputMilageWrapper,
+} from './FilterBar.styled';
+import {
+  selectStylesBrand,
+  selectStylesMin,
+  selectStylesMax,
+  selectStylesPrice,
+} from '../../utils/SelectsStyles';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAdverts } from '../../redux/adverts/selectors';
+import { setStatusFilter } from '../../redux/filters/slice';
+import { getOptions } from '../../utils/createFiltersOptions';
+import { changePage } from '../../redux/adverts/slice';
 
 const FilterBar = () => {
-  const [cars, setCars] = useState([]);
+  const dispatch = useDispatch();
+  const adverts = useSelector(selectAdverts);
+  const options = getOptions(adverts);
+
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
-  const [selectedMileage, setSelectedMileage] = useState(null);
-
-  useEffect(() => {
-    async function fetchCars() {
-      try {
-        const response = await axios.get(
-          'https://651fd793906e276284c399ff.mockapi.io/api/adverts'
-        );
-        console.log(response.data);
-        setCars(response.data);
-      } catch (error) {
-        console.error('Помилка завантаження автомобілів:', error);
-      }
-    }
-
-    fetchCars();
-  }, []);
+  const [selectedMileageMin, setSelectedMileageMin] = useState(null);
+  const [selectedMileageMax, setSelectedMileageMax] = useState(null);
 
   const handleBrandChange = selectedOption => {
     setSelectedBrand(selectedOption);
@@ -39,76 +37,110 @@ const FilterBar = () => {
     setSelectedPrice(selectedOption);
   };
 
-  const handleMileageChange = selectedOption => {
-    setSelectedMileage(selectedOption);
+  const handleMileageChangeMin = selectedOption => {
+    setSelectedMileageMin(selectedOption);
+  };
+  const handleMileageChangeMax = selectedOption => {
+    setSelectedMileageMax(selectedOption);
   };
 
   const handleLoadCarsSubmit = async e => {
     e.preventDefault();
-    try {
-      const response = await axios.get(
-        'https://651fd793906e276284c399ff.mockapi.io/api/adverts',
-        {
-          params: {
-            brand: selectedBrand ? selectedBrand.value : undefined,
-            price: selectedPrice ? selectedPrice.value : undefined,
-            mileage: selectedMileage ? selectedMileage.value : undefined,
-          },
-        }
-      );
-      console.log(response);
-      setCars(response.data);
-    } catch (error) {
-      console.error('Помилка завантаження автомобілів:', error);
-    }
+    const filter = {
+      brand: selectedBrand ? selectedBrand.value : null,
+      price: selectedPrice ? selectedPrice.value : null,
+      minMileage: selectedMileageMin ? selectedMileageMin.value : null,
+      maxMileage: selectedMileageMax ? selectedMileageMax.value : null,
+    };
+
+    dispatch(
+      setStatusFilter({
+        filter,
+      })
+    );
+    dispatch(changePage(1));
   };
 
   return (
     <FilterForm onSubmit={handleLoadCarsSubmit}>
-      <label>
-        Марка:
-        <Select
-          value={selectedBrand}
-          onChange={handleBrandChange}
-          options={brandOptions}
-          isClearable
-          placeholder="Оберіть марку"
-        />
-      </label>
+      <div>
+        <FilterLabel>
+          Car brand
+          <InputMilageWrapper>
+            <Select
+              value={selectedBrand}
+              onChange={handleBrandChange}
+              options={options.brandOptions}
+              isClearable
+              placeholder="Enter the text"
+              styles={selectStylesBrand}
+            />
+          </InputMilageWrapper>
+        </FilterLabel>
+      </div>
+      <div>
+        <FilterLabel>
+          Price/ 1 hour
+          <InputMilageWrapper>
+            <Select
+              value={
+                selectedPrice
+                  ? {
+                      value: selectedPrice,
+                      label: `To ${selectedPrice.label} $`,
+                    }
+                  : null
+              }
+              onChange={handlePriceChange}
+              options={options.priceOptions}
+              isSearchable={false}
+              isClearable
+              placeholder="To $"
+              styles={selectStylesPrice}
+            />
+          </InputMilageWrapper>
+        </FilterLabel>
+      </div>
+      <div>
+        <FilterLabel>Сar mileage / km </FilterLabel>
+        <InputMilageWrapper>
+          <Select
+            value={
+              selectedMileageMin
+                ? {
+                    value: selectedMileageMin,
+                    label: `From: ${selectedMileageMin.label}`,
+                  }
+                : null
+            }
+            onChange={handleMileageChangeMin}
+            options={options.mileageOptionsMin}
+            isClearable
+            isSearchable={false}
+            placeholder="From:"
+            styles={selectStylesMin}
+          />
 
-      <label>
-        Ціна за годину:
-        <Select
-          value={selectedPrice}
-          onChange={handlePriceChange}
-          options={[
-            { value: '20', label: '20' },
-            { value: '22', label: '22' },
-            { value: '25', label: '25' },
-            // Додайте більше варіантів цін
-          ]}
-          isClearable
-          placeholder="Оберіть ціну"
-        />
-      </label>
+          <Select
+            value={
+              selectedMileageMax
+                ? {
+                    value: selectedMileageMax,
+                    label: `to: ${selectedMileageMax.label}`,
+                  }
+                : null
+            }
+            onChange={handleMileageChangeMax}
+            options={options.mileageOptionsMax}
+            isSearchable={false}
+            isClearable
+            placeholder="to:"
+            styles={selectStylesMax}
+          />
+        </InputMilageWrapper>
+      </div>
 
-      <label>
-        Пробіг (км):
-        <Select
-          value={selectedMileage}
-          onChange={handleMileageChange}
-          options={[
-            { value: '50000', label: '50000' },
-            { value: '55000', label: '55000' },
-            { value: '60000', label: '60000' },
-            // Додайте більше варіантів пробігу
-          ]}
-          isClearable
-          placeholder="Оберіть пробіг"
-        />
-      </label>
-
-      <button type="submit">Завантажити авто</button>
+      <SubmitBtn type="submit">Search</SubmitBtn>
     </FilterForm>
   );
 };
