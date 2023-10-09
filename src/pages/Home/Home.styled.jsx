@@ -41,7 +41,5 @@ export const ToCatalogLink = styled.div`
   border-radius: 12px;
   background: rgba(138, 138, 137, 0.2);
   padding: 12px 50px;
-  &:hover {
-    
-  }
+ 
 `;
