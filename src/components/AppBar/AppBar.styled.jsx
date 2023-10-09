@@ -1,12 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  width: 1280px;
-  height: 100vh - 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-  padding: 50px 0 32px;
+ 
 `;
 
 export const SideBar = styled.aside`

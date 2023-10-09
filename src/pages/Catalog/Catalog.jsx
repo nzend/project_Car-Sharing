@@ -1,4 +1,4 @@
-
+import { Container } from "./Catalog.styled";
 import AdvertsWrapper from 'components/AdvertsWrapper/AdvertsWrapper';
 import FilterBar from 'components/FilterBar/FilterBar';
 import { selectAdverts } from '../../redux/adverts/selectors';
@@ -17,10 +17,10 @@ const Catalog = () => {
 
   let adverts = useSelector(selectAdverts);
   return (
-    <>
+    <Container>
       <FilterBar />
       <AdvertsWrapper items={adverts} />
-    </>
+    </Container>
   );
 };
 

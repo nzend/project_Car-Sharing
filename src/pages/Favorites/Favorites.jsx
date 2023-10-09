@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { selectFavoritesId } from '../../redux/favorites/selectors';
 import { getAdverts } from '../../redux/adverts/operations';
 import { changePage } from '../../redux/adverts/slice';
+import { Container } from "../Catalog/Catalog.styled";
 
 const Favorites = () => {
   const favoritesIds = useSelector(selectFavoritesId);
@@ -20,10 +21,10 @@ const Favorites = () => {
     return favoritesIds.includes(item.id);
   });
   return (
-    <>
+    <Container>
       <FilterBar />
       <AdvertsWrapper items={FavoritesCards} />
-    </>
+    </Container>
   );
 };
 

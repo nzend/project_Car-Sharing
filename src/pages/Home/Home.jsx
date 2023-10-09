@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { changePage } from '../../redux/adverts/slice';
 import { useEffect } from 'react';
+import { Hero, HeroTitle, HeroDescription, ToCatalogLink } from './Home.styled';
+import { NavigationLink } from '../../components/Navigation/Navigation.styled';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -8,15 +10,15 @@ const Home = () => {
     dispatch(changePage(1));
   }, [dispatch]);
   return (
-    <div>
-      <p>
-        Hello world. This is my educational project in which I practice
-        component React development with state saving in Redax. Routing with
-        private and public routes. With user registration and authorization.
-        <br />
-        Enjoy.
-      </p>
-    </div>
+    <Hero>
+      <HeroTitle>Leading Car Rental Service in Ukraine</HeroTitle>
+      <HeroDescription>
+        Explore Ukraine with Confidence - Your Trusted Car Rental Partner
+      </HeroDescription>
+      <NavigationLink to={'/catalog'}>
+        <ToCatalogLink>To Catalog</ToCatalogLink>
+      </NavigationLink>
+    </Hero>
   );
 };
 
