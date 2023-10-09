@@ -1,30 +1,34 @@
 import {
-  ModelAccent,
-  CarImg,
-  InfoList,
-  InfoItem,
-  CarTitle,
   CarDiscription,
+  CarMainInfo,
   SubmitBtn,
   IsFavoriteIcon,
   AdvertItem,
   IsNotFavoriteIcon,
+  CarConfigTitle,
+  RentalConditionsList,
+  RentalConditionsItem,
+  DataAccent,
+  RentalBtn,
 } from './AdvertsItem.styled';
-import { getAdress } from '../../utils/getAdress';
+import { InfoItem, InfoList } from './InfoList/InfoList.styled';
+import { nanoid } from 'nanoid';
+
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
 import { useDispatch } from 'react-redux';
 import { addFavoritesId, removeFavoritesId } from '../../redux/favorites/slice';
-
-
+import AdvertCarTitle from './CarTitle/CarTitle';
+import AdvertCarInfoList from './InfoList/InfoList';
+import AdvertCarImg from './CarImg/CarImg';
+import { splitStringIntoTextAndNumber } from '../../utils/splitString';
 
 const AdvertsItem = ({ item, isFavorite }) => {
   const dispatch = useDispatch();
   const [isFavoriteItem, setIsFavoriteItem] = useState(isFavorite);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const address = getAdress(item.address);
 
-  const handleIsFavorite = (itemId) => {
+  const handleIsFavorite = itemId => {
     if (isFavoriteItem) {
       dispatch(removeFavoritesId(itemId));
       setIsFavoriteItem(!isFavoriteItem);
@@ -37,9 +41,12 @@ const AdvertsItem = ({ item, isFavorite }) => {
   };
 
   const handleOpenModal = () => {
- 
+    const body = document.querySelector('body');
+     body.classList.toggle('modal-open');
     setIsModalOpen(!isModalOpen);
+   
   };
+  const rentalConditionsArray = item.rentalConditions.split('\n');
   return (
     <AdvertItem>
       {isFavoriteItem ? (
@@ -47,29 +54,54 @@ const AdvertsItem = ({ item, isFavorite }) => {
       ) : (
         <IsNotFavoriteIcon onClick={() => handleIsFavorite(item.id)} />
       )}
+      <AdvertCarImg item={item} width={274} />
 
-      <CarImg src={item.img} alt={item.make} />
-      <CarDiscription>
-        <CarTitle>
-          <span>
-            {item.make} <ModelAccent>{item.model}</ModelAccent>, {item.year}
-          </span>
-          <span>{item.rentalPrice}</span>
-        </CarTitle>
-        <InfoList>
-          <InfoItem>{address?.city}</InfoItem>
-          <InfoItem>{address?.country}</InfoItem>
-          <InfoItem>{item.rentalCompany}</InfoItem>
-          <InfoItem>{item.type}</InfoItem>
-          <InfoItem>{item.model}</InfoItem>
-          <InfoItem>{item.id}</InfoItem>
-          <InfoItem>{item.functionalities?.[0]}</InfoItem>
-        </InfoList>
-      </CarDiscription>
+      <CarMainInfo>
+        <AdvertCarTitle item={item} isModal={false} />
+        <AdvertCarInfoList item={item} />
+      </CarMainInfo>
       <SubmitBtn type="button" onClick={handleOpenModal}>
         Learn more
       </SubmitBtn>
-      {isModalOpen && <Modal openModal={handleOpenModal}></Modal>}
+      {isModalOpen && (
+        <Modal openModal={handleOpenModal} width={541} height={752}>
+          <AdvertCarImg item={item} width={461} />
+          <CarMainInfo>
+            <AdvertCarTitle item={item} isModal={true} />
+            <AdvertCarInfoList item={item} isModal={true} />
+          </CarMainInfo>
+          <CarDiscription>{item.description}</CarDiscription>
+          <CarConfigTitle>Accessories and functionalities:</CarConfigTitle>
+          <InfoList>
+            {item.accessories.map(item => {
+              return <InfoItem key={nanoid()}>{item}</InfoItem>;
+            })}
+            {item.functionalities.map(item => {
+              return <InfoItem key={nanoid()}>{item}</InfoItem>;
+            })}
+          </InfoList>
+          <CarConfigTitle>Rental Conditions: </CarConfigTitle>
+          <RentalConditionsList>
+            {rentalConditionsArray.map(item => {
+              const data = splitStringIntoTextAndNumber(item);
+
+              return (
+                <RentalConditionsItem key={nanoid()}>
+                  {data.text}
+                  {data.number && <DataAccent> {data.number}</DataAccent>}
+                </RentalConditionsItem>
+              );
+            })}
+            <RentalConditionsItem>
+              Mileage: <DataAccent> {item.mileage}</DataAccent>
+            </RentalConditionsItem>
+            <RentalConditionsItem>
+              Price: <DataAccent> {item.rentalPrice}</DataAccent>
+            </RentalConditionsItem>
+          </RentalConditionsList>
+          <RentalBtn href="tel:+380 96 9261128">Rental Car</RentalBtn>
+        </Modal>
+      )}
     </AdvertItem>
   );
 };

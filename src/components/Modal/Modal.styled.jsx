@@ -16,13 +16,12 @@ export const Backdrop = styled.div`
 export const ModalWrap = styled.div`
   border: 1px solid rgba(239, 237, 232, 0.2);
   position: absolute;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  padding: 40px 35px;
+
+  padding: 40px;
   border-radius: 24px;
   background-color: #FFF;
-  z-index: 555;
+  width: ${props => props.width}px;
+    max-height: ${props => props.height[1]}px;
 `;
 
 export const ButtonExit = styled.button`

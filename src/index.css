@@ -1,45 +1,35 @@
-
-
 @font-face {
   font-family: 'Montserrat';
   font-weight: 400;
-  src:
-    url('assets/fonts/Montserrat-Regular.ttf') format('truetype'),
+  src: url('assets/fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Montserrat';
   font-weight: 500;
-  src:
-    url('assets/fonts/Montserrat-Medium.ttf') format('truetype'),
+  src: url('assets/fonts/Montserrat-Medium.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';
   font-weight: 700;
-  src:
-    url('assets/fonts/Montserrat-Bold.ttf') format('truetype'),
+  src: url('assets/fonts/Montserrat-Bold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Manrope';
   font-weight: 400;
-  src:
-    url('assets/fonts/Manrope-Regular.ttf') format('truetype'),
+  src: url('assets/fonts/Manrope-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Manrope';
   font-weight: 500;
-  src:
-    url('assets/fonts/Manrope-Medium.ttf') format('truetype'),
+  src: url('assets/fonts/Manrope-Medium.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Manrope';
   font-weight: 700;
-  src:
-    url('assets/fonts/Manrope-Bold.ttf') format('truetype'),
+  src: url('assets/fonts/Manrope-Bold.ttf') format('truetype');
 }
-
-
 
 html {
   box-sizing: border-box;
@@ -57,11 +47,13 @@ body {
   margin: 0;
   font-family: 'Manrope', sans-serif;
   color: #212121;
-  background-color: #FFF;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body.modal-open {
+  overflow: hidden;
+}
 
 img {
   display: block;
@@ -106,5 +98,4 @@ button {
   color: inherit;
   background-color: transparent;
   cursor: pointer;
-  
 }

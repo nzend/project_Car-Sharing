@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Backdrop, ModalWrap, ButtonExit, CloseBtn } from './Modal.styled';
+
 import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
