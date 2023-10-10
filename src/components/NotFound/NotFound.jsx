@@ -1,6 +1,6 @@
-import { SorryText } from "./NotFound.styled";
+import { SorryText } from './NotFound.styled';
 const NotFound = () => {
-  return <SorryText>There are no cars for these parameters</SorryText>;
+  return <SorryText>Nothing was found</SorryText>;
 };
 
 export default NotFound;
