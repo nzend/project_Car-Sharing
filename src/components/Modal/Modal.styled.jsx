@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { AiOutlineClose } from 'react-icons/ai';
-
+import colors from 'utils/colorVeriables';
 export const Backdrop = styled.div`
   position: fixed;
   width: 100%;
@@ -10,7 +10,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(22, 22, 22, 0.5);
+  background-color: ${colors.backdrop};
 `;
 
 export const ModalWrap = styled.div`

@@ -4,7 +4,7 @@ import { RxStitchesLogo } from 'react-icons/rx';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { MdFavoriteBorder } from 'react-icons/md';
 import { GiCityCar } from 'react-icons/gi';
-
+import colors from 'utils/colorVeriables';
 export const NavigationList = styled.ul`
   position: relative;
   display: flex;
@@ -40,14 +40,14 @@ export const NavigationLink = styled(NavLink)`
   transition: color 0.25s;
   &:hover,
   &:focus {
-    color: #f87719;
+    color: ${colors.accentOrangeColor};
   }
 `;
 
 export const Logo = styled(RxStitchesLogo)`
   width: 50px;
   height: 50px;
-  color: #f87719;
+  color: ${colors.accentOrangeColor};
   margin-top: 50px;
   margin-bottom: 50px;
 `;
@@ -65,8 +65,7 @@ export const IconFavorite = styled(GiCityCar)`
 `;
 export const Menu = styled.span`
   position: relative;
-  color: #fff;
-  font-family: Gayathri;
+  color: ${colors.mainWhite};
   font-size: 25px;
   font-weight: 400;
   letter-spacing: 0.75;

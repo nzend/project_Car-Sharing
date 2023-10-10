@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-
+import colors from 'utils/colorVeriables';
 export const SorryText = styled.p`
-  color: #000000;
-
+  color: ${colors.textBlack};
   font-size: 32px;
   font-weight: 700;
   line-height: 1;

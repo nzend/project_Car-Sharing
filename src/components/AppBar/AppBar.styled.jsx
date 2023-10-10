@@ -1,13 +1,8 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
- 
-`;
-
 export const SideBar = styled.aside`
   position: fixed;
   top: 0;
-  /* left: 220px; */
   z-index: 1;
   display: flex;
   flex-direction: column;

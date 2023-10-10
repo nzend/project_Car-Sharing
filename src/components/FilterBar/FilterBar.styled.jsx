@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import colors from 'utils/colorVeriables';
 
 export const FilterForm = styled.form`
   display: flex;
@@ -9,7 +10,7 @@ export const FilterForm = styled.form`
 `;
 
 export const FilterLabel = styled.label`
-  color: #8a8a89;
+  color: ${colors.textGrayColor};
 
   font-size: 14px;
 
@@ -20,7 +21,7 @@ export const FilterLabel = styled.label`
 
 export const SubmitBtn = styled.button`
   border-radius: 12px;
-  background-color: #3470ff;
+  background-color: ${colors.btnColor};
   color: #fff;
   padding: 14px 44px;
   font-size: 14px;
@@ -28,7 +29,7 @@ export const SubmitBtn = styled.button`
   line-height: 1.42;
   transition: background-color 0.3s ease-out;
   &:hover {
-    background-color: #0b44cd;
+    background-color: ${colors.btnHoverColor};
   }
 `;
 

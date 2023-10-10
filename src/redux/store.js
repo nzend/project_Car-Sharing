@@ -27,7 +27,6 @@ const persistedFavoritesReducer = persistReducer(
   favoritesSlice
 );
 
-// Store
 export const store = configureStore({
   reducer: {
     adverts: advertsSlice,

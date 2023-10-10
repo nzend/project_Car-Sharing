@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import heroImg from '../../assets/images/land_rover_range_rover_sport.jpg';
+import colors from 'utils/colorVeriables';
+
 export const Hero = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,12 +9,12 @@ export const Hero = styled.div`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fff;
+  background-color: ${colors.mainWhite};
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-image: linear-gradient(
       to bottom,
       rgba(20, 20, 20, 0.8),
@@ -22,7 +24,7 @@ export const Hero = styled.div`
 `;
 
 export const HeroTitle = styled.h1`
-  color: #db3138;
+  color: ${colors.accentRedColor};
   text-align: center;
   font-size: 75px;
 
@@ -30,7 +32,7 @@ export const HeroTitle = styled.h1`
 `;
 
 export const HeroDescription = styled.p`
-  color: #fff;
+  color: ${colors.textWhite};
   text-align: center;
   font-family: Montserrat;
   font-size: 40px;

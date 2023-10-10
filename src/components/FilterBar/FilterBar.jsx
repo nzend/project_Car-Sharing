@@ -15,7 +15,7 @@ import {
 } from '../../utils/SelectsStyles';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAdverts } from '../../redux/adverts/selectors';
-import { setStatusFilter } from '../../redux/filters/slice';
+import { resetStatusFilter, setStatusFilter } from '../../redux/filters/slice';
 import { getOptions } from '../../utils/createFiltersOptions';
 import { changePage } from '../../redux/adverts/slice';
 
@@ -28,18 +28,36 @@ const FilterBar = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
+
   const [optionsMilageMin, setOptionsMilageMin] = useState(null);
   const [optionsMilageMax, setOptionsMilageMax] = useState(null);
   const [optionsBrand, setOptionsBrand] = useState(null);
   const [optionsPrice, setOptionsPrice] = useState(null);
 
   useEffect(() => {
-    const options = getOptions(adverts);
-    setOptionsBrand([...options.brandOptions]);
-    setOptionsPrice([...options.priceOptions]);
-    setOptionsMilageMin([...options.mileageOptionsMin]);
-    setOptionsMilageMax([...options.mileageOptionsMax]);
-  }, [adverts]);
+    if (
+      !selectedBrand &&
+      !selectedPrice &&
+      !selectedMileageMin &&
+      !selectedMileageMax
+    ) {
+      const options = getOptions(adverts);
+      setOptionsBrand([...options.brandOptions]);
+      setOptionsPrice([...options.priceOptions]);
+      setOptionsMilageMin([...options.mileageOptionsMin]);
+      setOptionsMilageMax([...options.mileageOptionsMax]);
+
+      dispatch(resetStatusFilter());
+      dispatch(changePage(1));
+    }
+  }, [
+    dispatch,
+    adverts,
+    selectedBrand,
+    selectedMileageMax,
+    selectedMileageMin,
+    selectedPrice,
+  ]);
 
   const handleBrandChange = selectedOption => {
     setSelectedBrand(selectedOption);
@@ -50,7 +68,7 @@ const FilterBar = () => {
   };
 
   const handleMileageChangeMin = selectedOption => {
-    if (!selectedMileageMax && selectedOption) {
+    if (selectedOption) {
       const filteredMileageOptionsMax = options.mileageOptionsMax.filter(
         option => option.value > selectedOption.value
       );
@@ -60,11 +78,11 @@ const FilterBar = () => {
     setSelectedMileageMin(selectedOption);
   };
   const handleMileageChangeMax = selectedOption => {
-    if (!selectedMileageMin && selectedOption) {
-      const filteredMileageOptionsMax = options.mileageOptionsMin.filter(
+    if (selectedOption) {
+      const filteredMileageOptionsMin = options.mileageOptionsMin.filter(
         option => option.value < selectedOption.value
       );
-      setOptionsMilageMin([...filteredMileageOptionsMax]);
+      setOptionsMilageMin([...filteredMileageOptionsMin]);
     }
 
     setSelectedMileageMax(selectedOption);
