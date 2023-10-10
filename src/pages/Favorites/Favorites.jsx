@@ -6,7 +6,8 @@ import React, { useEffect } from 'react';
 import { selectFavoritesId } from '../../redux/favorites/selectors';
 import { getAdverts } from '../../redux/adverts/operations';
 import { changePage } from '../../redux/adverts/slice';
-import { Container } from "../Catalog/Catalog.styled";
+import { Container } from '../Catalog/Catalog.styled';
+import { resetStatusFilter } from '../../redux/filters/slice';
 
 const Favorites = () => {
   const favoritesIds = useSelector(selectFavoritesId);
@@ -15,6 +16,7 @@ const Favorites = () => {
   useEffect(() => {
     dispatch(getAdverts());
     dispatch(changePage(1));
+    dispatch(resetStatusFilter());
   }, [dispatch]);
 
   let FavoritesCards = adverts.filter(item => {

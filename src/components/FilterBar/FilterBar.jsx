@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import {
@@ -19,7 +19,6 @@ import { setStatusFilter } from '../../redux/filters/slice';
 import { getOptions } from '../../utils/createFiltersOptions';
 import { changePage } from '../../redux/adverts/slice';
 
-
 const FilterBar = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);
@@ -29,6 +28,18 @@ const FilterBar = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
+  const [optionsMilageMin, setOptionsMilageMin] = useState(null);
+  const [optionsMilageMax, setOptionsMilageMax] = useState(null);
+  const [optionsBrand, setOptionsBrand] = useState(null);
+  const [optionsPrice, setOptionsPrice] = useState(null);
+
+  useEffect(() => {
+    const options = getOptions(adverts);
+    setOptionsBrand([...options.brandOptions]);
+    setOptionsPrice([...options.priceOptions]);
+    setOptionsMilageMin([...options.mileageOptionsMin]);
+    setOptionsMilageMax([...options.mileageOptionsMax]);
+  }, [adverts]);
 
   const handleBrandChange = selectedOption => {
     setSelectedBrand(selectedOption);
@@ -39,9 +50,23 @@ const FilterBar = () => {
   };
 
   const handleMileageChangeMin = selectedOption => {
+    if (!selectedMileageMin) {
+      const filteredMileageOptionsMax = options.mileageOptionsMax.filter(
+        option => option.value > selectedOption.value
+      );
+      setOptionsMilageMax([...filteredMileageOptionsMax]);
+    }
+
     setSelectedMileageMin(selectedOption);
   };
   const handleMileageChangeMax = selectedOption => {
+    if (!selectedMileageMax) {
+      const filteredMileageOptionsMax = options.mileageOptionsMin.filter(
+        option => option.value < selectedOption.value
+      );
+      setOptionsMilageMin([...filteredMileageOptionsMax]);
+    }
+
     setSelectedMileageMax(selectedOption);
   };
 
@@ -71,7 +96,7 @@ const FilterBar = () => {
             <Select
               value={selectedBrand}
               onChange={handleBrandChange}
-              options={options.brandOptions}
+              options={optionsBrand}
               isClearable
               placeholder="Enter the text"
               styles={selectStylesBrand}
@@ -93,7 +118,7 @@ const FilterBar = () => {
                   : null
               }
               onChange={handlePriceChange}
-              options={options.priceOptions}
+              options={optionsPrice}
               isSearchable={false}
               isClearable
               placeholder="To $"
@@ -115,7 +140,7 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMin}
-            options={options.mileageOptionsMin}
+            options={optionsMilageMin}
             isClearable
             isSearchable={false}
             placeholder="From:"
@@ -132,7 +157,7 @@ const FilterBar = () => {
                 : null
             }
             onChange={handleMileageChangeMax}
-            options={options.mileageOptionsMax}
+            options={optionsMilageMax}
             isSearchable={false}
             isClearable
             placeholder="to:"

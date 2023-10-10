@@ -3,11 +3,13 @@ import { changePage } from '../../redux/adverts/slice';
 import { useEffect } from 'react';
 import { Hero, HeroTitle, HeroDescription, ToCatalogLink } from './Home.styled';
 import { NavigationLink } from '../../components/Navigation/Navigation.styled';
+import { resetStatusFilter } from '../../redux/filters/slice';
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(changePage(1));
+    dispatch(resetStatusFilter());
   }, [dispatch]);
   return (
     <Hero>
