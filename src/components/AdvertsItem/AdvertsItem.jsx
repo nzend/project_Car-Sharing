@@ -42,9 +42,8 @@ const AdvertsItem = ({ item, isFavorite }) => {
 
   const handleOpenModal = () => {
     const body = document.querySelector('body');
-     body.classList.toggle('modal-open');
+    body.classList.toggle('modal-open');
     setIsModalOpen(!isModalOpen);
-   
   };
   const rentalConditionsArray = item.rentalConditions.split('\n');
   return (
@@ -93,7 +92,7 @@ const AdvertsItem = ({ item, isFavorite }) => {
               );
             })}
             <RentalConditionsItem>
-              Mileage: <DataAccent> {item.mileage}</DataAccent>
+              Mileage: <DataAccent> {item.mileage.toLocaleString()}</DataAccent>
             </RentalConditionsItem>
             <RentalConditionsItem>
               Price: <DataAccent> {item.rentalPrice}</DataAccent>
