@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import heroImg from '../../assets/images/land_rover_range_rover_sport.jpg';
 export const Hero = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@ export const Hero = styled.div`
       rgba(20, 20, 20, 0.8),
       rgba(20, 20, 20, 1)
     ),
-    url(' https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/land_rover_range_rover_sport.jpg');
+    url(${heroImg});
 `;
 
 export const HeroTitle = styled.h1`
