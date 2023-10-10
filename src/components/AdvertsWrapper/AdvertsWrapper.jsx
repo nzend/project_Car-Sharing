@@ -12,6 +12,7 @@ import { changePage } from 'redux/adverts/slice';
 import { selectPage } from '../../redux/adverts/selectors';
 import { filtering } from '../../utils/advertsFilter';
 import { selectFavoritesId } from 'redux/favorites/selectors';
+import NotFound from 'components/NotFound/NotFound';
 
 const AdvertsWrapper = ({ items }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const AdvertsWrapper = ({ items }) => {
   const favorites = useSelector(selectFavoritesId);
 
   const hangleIsFavorite = itemId => {
-   return favorites.includes(itemId);
+    return favorites.includes(itemId);
   };
 
   const filters = useSelector(selectFilter);
@@ -36,22 +37,28 @@ const AdvertsWrapper = ({ items }) => {
 
   return (
     <AdvertsContainer>
-      <AdvertsList>
-        {visibleCards.map(item => {
-          return (
-            <AdvertsItem
-              key={item.id}
-              item={item}
-              isFavorite={hangleIsFavorite(item.id)}
-            />
-          );
-        })}
-      </AdvertsList>
+      {visibleCards.length < 1 ? (
+        <NotFound />
+      ) : (
+        <>
+          <AdvertsList>
+            {visibleCards.map(item => {
+              return (
+                <AdvertsItem
+                  key={item.id}
+                  item={item}
+                  isFavorite={hangleIsFavorite(item.id)}
+                />
+              );
+            })}
+          </AdvertsList>
 
-      {visibleCards.length < filtering(items, filters).length && (
-        <LoadMoreBtn onClick={() => dispatch(changePage(page + 1))}>
-          Load more
-        </LoadMoreBtn>
+          {visibleCards.length < filtering(items, filters).length && (
+            <LoadMoreBtn onClick={() => dispatch(changePage(page + 1))}>
+              Load more
+            </LoadMoreBtn>
+          )}
+        </>
       )}
     </AdvertsContainer>
   );
