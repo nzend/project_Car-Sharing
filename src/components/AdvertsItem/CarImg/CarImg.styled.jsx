@@ -11,4 +11,5 @@ export const LoaderBox = styled.div`
   align-items: center;
   align-content: center;
   margin-bottom: 14px;
+  background-color: rgba(239, 237, 232, 0.2);
 `;

@@ -3,6 +3,7 @@ import { AiFillHeart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 
 export const AdvertItem = styled.li`
+  width: 274px;
   position: relative;
 `;
 

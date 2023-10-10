@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 export const AdvertsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 29px;
+  grid-column-gap: 30px;
   grid-row-gap: 50px;
-
+  
   padding: 0 32px;
   margin-bottom: 100px;
 `;
