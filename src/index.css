@@ -34,7 +34,6 @@
 html {
   box-sizing: border-box;
   width: 100vw;
-  overflow-x: hidden;
 }
 
 *,
@@ -50,10 +49,11 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
-/* body.modal-open {
+body.modal-open {
   overflow: hidden;
-} */
+}
 
 img {
   display: block;
@@ -79,16 +79,6 @@ ul {
 
 a {
   text-decoration: none;
-}
-
-/*
- * Стили компонента App
- */
-.App {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
 }
 
 button {
