@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/project_Car-Sharing/static/css/main.1c880001.css",
-    "main.js": "/project_Car-Sharing/static/js/main.e448e1de.js",
+    "main.js": "/project_Car-Sharing/static/js/main.4d843a65.js",
     "static/js/640.e13d2fce.chunk.js": "/project_Car-Sharing/static/js/640.e13d2fce.chunk.js",
     "static/js/544.425b2f4b.chunk.js": "/project_Car-Sharing/static/js/544.425b2f4b.chunk.js",
     "static/js/822.e6020eb4.chunk.js": "/project_Car-Sharing/static/js/822.e6020eb4.chunk.js",
     "static/js/733.a0a00d30.chunk.js": "/project_Car-Sharing/static/js/733.a0a00d30.chunk.js",
     "static/js/195.40a03a30.chunk.js": "/project_Car-Sharing/static/js/195.40a03a30.chunk.js",
-    "static/js/931.600772a8.chunk.js": "/project_Car-Sharing/static/js/931.600772a8.chunk.js",
+    "static/js/931.1900700f.chunk.js": "/project_Car-Sharing/static/js/931.1900700f.chunk.js",
     "static/media/Montserrat-Bold.ttf": "/project_Car-Sharing/static/media/Montserrat-Bold.50f0257aa1e905f4bfaf.ttf",
     "static/media/Montserrat-Medium.ttf": "/project_Car-Sharing/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
     "static/media/Montserrat-Regular.ttf": "/project_Car-Sharing/static/media/Montserrat-Regular.24785cc015b27a3e964b.ttf",
@@ -16,16 +16,16 @@
     "static/media/Manrope-Bold.ttf": "/project_Car-Sharing/static/media/Manrope-Bold.47f6d7143da9d8c0e480.ttf",
     "index.html": "/project_Car-Sharing/index.html",
     "main.1c880001.css.map": "/project_Car-Sharing/static/css/main.1c880001.css.map",
-    "main.e448e1de.js.map": "/project_Car-Sharing/static/js/main.e448e1de.js.map",
+    "main.4d843a65.js.map": "/project_Car-Sharing/static/js/main.4d843a65.js.map",
     "640.e13d2fce.chunk.js.map": "/project_Car-Sharing/static/js/640.e13d2fce.chunk.js.map",
     "544.425b2f4b.chunk.js.map": "/project_Car-Sharing/static/js/544.425b2f4b.chunk.js.map",
     "822.e6020eb4.chunk.js.map": "/project_Car-Sharing/static/js/822.e6020eb4.chunk.js.map",
     "733.a0a00d30.chunk.js.map": "/project_Car-Sharing/static/js/733.a0a00d30.chunk.js.map",
     "195.40a03a30.chunk.js.map": "/project_Car-Sharing/static/js/195.40a03a30.chunk.js.map",
-    "931.600772a8.chunk.js.map": "/project_Car-Sharing/static/js/931.600772a8.chunk.js.map"
+    "931.1900700f.chunk.js.map": "/project_Car-Sharing/static/js/931.1900700f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1c880001.css",
-    "static/js/main.e448e1de.js"
+    "static/js/main.4d843a65.js"
   ]
 }
