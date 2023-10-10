@@ -53,7 +53,7 @@ const AdvertsItem = ({ item, isFavorite }) => {
       ) : (
         <IsNotFavoriteIcon onClick={() => handleIsFavorite(item.id)} />
       )}
-      <AdvertCarImg item={item} width={274}  />
+      <AdvertCarImg item={item} width={274} height={268} />
 
       <CarMainInfo>
         <AdvertCarTitle item={item} isModal={false} />
@@ -64,7 +64,7 @@ const AdvertsItem = ({ item, isFavorite }) => {
       </SubmitBtn>
       {isModalOpen && (
         <Modal openModal={handleOpenModal} width={541} height={752}>
-          <AdvertCarImg item={item} width={461}  />
+          <AdvertCarImg item={item} width={461} height={248} />
           <CarMainInfo>
             <AdvertCarTitle item={item} isModal={true} />
             <AdvertCarInfoList item={item} isModal={true} />

@@ -12,7 +12,7 @@ export const Hero = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-image: linear-gradient(
       to bottom,
       rgba(20, 20, 20, 0.8),

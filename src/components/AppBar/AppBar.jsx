@@ -11,7 +11,9 @@ const AppBar = () => {
       </SideBar>
 
       <Container>
-        <Suspense fallback={<Loader size={'100'} needToCenter />}>
+        <Suspense
+          fallback={<Loader size={'100'} loader={'pruff'} needToCenter />}
+        >
           <Outlet />
         </Suspense>
       </Container>

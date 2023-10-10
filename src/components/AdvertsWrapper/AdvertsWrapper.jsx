@@ -26,7 +26,7 @@ const AdvertsWrapper = ({ items }) => {
   const filters = useSelector(selectFilter);
   let page = useSelector(selectPage);
 
-  const [visibleCards, setVisibleCards] = useState([]);
+  const [visibleCards, setVisibleCards] = useState([...items]);
 
   useEffect(() => {
     let filteredCards = filtering(items, filters);
@@ -37,7 +37,7 @@ const AdvertsWrapper = ({ items }) => {
 
   return (
     <AdvertsContainer>
-      {visibleCards.length < 1 ? (
+      {visibleCards.length === 0 ? (
         <NotFound />
       ) : (
         <>
