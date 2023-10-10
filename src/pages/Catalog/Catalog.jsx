@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 import { getAdverts } from '../../redux/adverts/operations';
 import { changePage } from '../../redux/adverts/slice';
 import { resetStatusFilter } from '../../redux/filters/slice';
-import Loader from '../../components/Loader/Loader';
+
 
 const Catalog = () => {
   const dispatch = useDispatch();
