@@ -17,7 +17,7 @@ export const Hero = styled.div`
       rgba(20, 20, 20, 0.8),
       rgba(20, 20, 20, 1)
     ),
-    url('https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/land_rover_range_rover_sport.jpg');
+    url(' https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/land_rover_range_rover_sport.jpg');
 `;
 
 export const HeroTitle = styled.h1`
@@ -41,5 +41,4 @@ export const ToCatalogLink = styled.div`
   border-radius: 12px;
   background: rgba(138, 138, 137, 0.2);
   padding: 12px 50px;
- 
 `;
