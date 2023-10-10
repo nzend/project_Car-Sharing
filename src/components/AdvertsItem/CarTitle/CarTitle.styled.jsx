@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import colors from 'utils/colorVeriables';
 
 export const CarTitle = styled.span`
   display: flex;
   justify-content: space-between;
-  color: #121417;
+  color: ${colors.textBlack};
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
@@ -12,5 +13,5 @@ export const CarTitle = styled.span`
 `;
 
 export const ModelAccent = styled.span`
-  color: #3470ff;
+  color: ${colors.accentColor};
 `;

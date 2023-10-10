@@ -29,11 +29,35 @@ const FilterBar = () => {
   const [selectedMileageMin, setSelectedMileageMin] = useState(null);
   const [selectedMileageMax, setSelectedMileageMax] = useState(null);
 
-
   const [optionsMilageMin, setOptionsMilageMin] = useState(null);
   const [optionsMilageMax, setOptionsMilageMax] = useState(null);
   const [optionsBrand, setOptionsBrand] = useState(null);
   const [optionsPrice, setOptionsPrice] = useState(null);
+
+  useEffect(() => {
+    if (
+      !selectedBrand &&
+      !selectedPrice &&
+      !selectedMileageMin &&
+      !selectedMileageMax
+    ) {
+      const options = getOptions(adverts);
+      setOptionsBrand([...options.brandOptions]);
+      setOptionsPrice([...options.priceOptions]);
+      setOptionsMilageMin([...options.mileageOptionsMin]);
+      setOptionsMilageMax([...options.mileageOptionsMax]);
+
+      dispatch(resetStatusFilter());
+      dispatch(changePage(1));
+    }
+  }, [
+    dispatch,
+    adverts,
+    selectedBrand,
+    selectedMileageMax,
+    selectedMileageMin,
+    selectedPrice,
+  ]);
 
   const handleBrandChange = selectedOption => {
     setSelectedBrand(selectedOption);
@@ -63,31 +87,6 @@ const FilterBar = () => {
 
     setSelectedMileageMax(selectedOption);
   };
-
-  useEffect(() => {
-    if (
-      !selectedBrand &&
-      !selectedPrice &&
-      !selectedMileageMin &&
-      !selectedMileageMax
-    ) {
-      const options = getOptions(adverts);
-      setOptionsBrand([...options.brandOptions]);
-      setOptionsPrice([...options.priceOptions]);
-      setOptionsMilageMin([...options.mileageOptionsMin]);
-      setOptionsMilageMax([...options.mileageOptionsMax]);
-
-      dispatch(resetStatusFilter());
-      dispatch(changePage(1));
-    }
-  }, [
-    dispatch,
-    adverts,
-    selectedBrand,
-    selectedMileageMax,
-    selectedMileageMin,
-    selectedPrice,
-  ]);
 
   const handleLoadCarsSubmit = async e => {
     e.preventDefault();

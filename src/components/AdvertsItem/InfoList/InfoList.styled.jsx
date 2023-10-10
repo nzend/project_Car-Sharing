@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+import colors from 'utils/colorVeriables';
 export const InfoList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +7,7 @@ export const InfoList = styled.ul`
 
   width: ${props => (props.isModal ? 380 + 'px' : '100%')};
   margin-bottom: ${props => (props.isModal ? 14 + 'px' : '28px')};
-  color: rgba(18, 20, 23, 0.5);
+  color: ${colors.textLiteGrey};
   font-size: 12px;
   line-height: 1.5;
 `;

@@ -1,5 +1,5 @@
 import { Puff, ThreeDots } from 'react-loader-spinner';
-
+import colors from 'utils/colorVeriables';
 const Loader = ({ loader, size, needToCenter }) => {
   return (
     <>
@@ -8,7 +8,7 @@ const Loader = ({ loader, size, needToCenter }) => {
           height={size}
           width={size}
           radius={1}
-          color="#E6533C"
+          color={colors.btnHoverColor}
           ariaLabel="puff-loading"
           wrapperStyle={{
             display: 'flex',
@@ -24,7 +24,7 @@ const Loader = ({ loader, size, needToCenter }) => {
           height={size}
           width={size}
           radius="9"
-          color="#E6533C"
+          color={colors.btnHoverColor}
           ariaLabel="three-dots-loading"
           wrapperStyle={{
             display: 'flex',

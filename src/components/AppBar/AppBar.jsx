@@ -10,13 +10,13 @@ const AppBar = () => {
         <Navigation />
       </SideBar>
 
-      <Container>
+      <div>
         <Suspense
           fallback={<Loader size={'100'} loader={'pruff'} needToCenter />}
         >
           <Outlet />
         </Suspense>
-      </Container>
+      </div>
     </>
   );
 };

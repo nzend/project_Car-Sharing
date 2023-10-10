@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import colors from 'utils/colorVeriables';
 import { AiFillHeart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 
@@ -13,7 +14,7 @@ export const IsFavoriteIcon = styled(AiFillHeart)`
   right: 20px;
   width: 18px;
   height: 18px;
-  fill: rgba(52, 112, 255, 1);
+  fill: ${colors.favoriteAccentColor};
   transition: transform 0.5s ease-out;
   &:hover {
     transform: scale(1.2);
@@ -27,7 +28,7 @@ export const IsNotFavoriteIcon = styled(AiOutlineHeart)`
   right: 20px;
   width: 18px;
   height: 18px;
-  fill: white;
+  fill: ${colors.mainWhite};
   transform: scale(1);
   transition: transform 0.5s ease-out;
   &:hover {
@@ -43,20 +44,20 @@ export const CarMainInfo = styled.div`
 
 export const SubmitBtn = styled.button`
   border-radius: 12px;
-  background-color: #3470ff;
-  color: #fff;
+  background-color: ${colors.btnColor};
+  color: ${colors.textWhite};
   padding: 12px 99px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.42;
   transition: background-color 0.3s ease-out;
   &:hover {
-    background-color: #0b44cd;
+    background-color: ${colors.btnHoverColor};
   }
 `;
 
 export const CarDiscription = styled.p`
-  color: #121417;
+  color: ${colors.textBlack};
   font-size: 14px;
   font-weight: 500;
   line-height: 1.42;
@@ -64,7 +65,7 @@ export const CarDiscription = styled.p`
 `;
 
 export const CarConfigTitle = styled.span`
-  color: #121417;
+  color: ${colors.textBlack};
   font-size: 14px;
   font-weight: 500;
   line-height: 1.42;
@@ -93,12 +94,12 @@ export const RentalConditionsItem = styled.li`
 `;
 
 export const DataAccent = styled.span`
-  color: #3470ff;
+  color: ${colors.accentColor};
   margin-left: 3px;
 `;
 export const RentalBtn = styled.a`
   border-radius: 12px;
-  background-color: #3470ff;
+  background-color: ${colors.btnColor};
   color: #fff;
   padding: 12px 50px;
   font-size: 14px;
@@ -106,6 +107,6 @@ export const RentalBtn = styled.a`
   line-height: 1.42;
   transition: background-color 0.3s ease-out;
   &:hover {
-    background-color: #0b44cd;
+    background-color: ${colors.btnHoverColor};
   }
 `;
