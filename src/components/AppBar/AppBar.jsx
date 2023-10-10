@@ -2,7 +2,7 @@ import { Container, SideBar } from './AppBar.styled';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Navigation from '../Navigation/Navigation';
-
+import Loader from '../Loader/Loader';
 const AppBar = () => {
   return (
     <>
@@ -11,7 +11,7 @@ const AppBar = () => {
       </SideBar>
 
       <Container>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader size={'100'} needToCenter />}>
           <Outlet />
         </Suspense>
       </Container>

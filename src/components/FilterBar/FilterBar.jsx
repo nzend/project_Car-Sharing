@@ -50,7 +50,7 @@ const FilterBar = () => {
   };
 
   const handleMileageChangeMin = selectedOption => {
-    if (!selectedMileageMin) {
+    if (!selectedMileageMax && selectedOption) {
       const filteredMileageOptionsMax = options.mileageOptionsMax.filter(
         option => option.value > selectedOption.value
       );
@@ -60,7 +60,7 @@ const FilterBar = () => {
     setSelectedMileageMin(selectedOption);
   };
   const handleMileageChangeMax = selectedOption => {
-    if (!selectedMileageMax) {
+    if (!selectedMileageMin && selectedOption) {
       const filteredMileageOptionsMax = options.mileageOptionsMin.filter(
         option => option.value < selectedOption.value
       );
