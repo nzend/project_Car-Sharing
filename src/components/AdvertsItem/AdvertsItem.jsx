@@ -98,7 +98,7 @@ const AdvertsItem = ({ item, isFavorite }) => {
               Price: <DataAccent> {item.rentalPrice}</DataAccent>
             </RentalConditionsItem>
           </RentalConditionsList>
-          <RentalBtn href="tel:+380 96 9261128">Rental Car</RentalBtn>
+          <RentalBtn href="tel:+380730000000">Rental Car</RentalBtn>
         </Modal>
       )}
     </AdvertItem>
