@@ -38,7 +38,7 @@ const AdvertsWrapper = ({ items }) => {
   return (
     <AdvertsContainer>
       {visibleCards.length === 0 ? (
-        <NotFound />
+        <NotFound>There are no cars with such parameters</NotFound>
       ) : (
         <>
           <AdvertsList>
