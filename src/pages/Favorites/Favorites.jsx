@@ -23,7 +23,6 @@ const Favorites = () => {
   let favoriteCards = adverts.filter(item => {
     return favoritesIds.includes(item.id);
   });
-  console.log(favoriteCards);
   return (
     <Container>
       <FilterBar />
