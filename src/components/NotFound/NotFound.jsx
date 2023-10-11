@@ -1,6 +1,6 @@
-import { SorryText } from "./NotFound.styled";
-const NotFound = () => {
-  return <SorryText>There are no cars for these parameters</SorryText>;
+import { SorryText } from './NotFound.styled';
+const NotFound = ({ children }) => {
+  return <SorryText>{children}</SorryText>;
 };
 
 export default NotFound;

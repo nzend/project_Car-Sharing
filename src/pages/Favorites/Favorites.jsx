@@ -8,6 +8,7 @@ import { getAdverts } from '../../redux/adverts/operations';
 import { changePage } from '../../redux/adverts/slice';
 import { Container } from '../Catalog/Catalog.styled';
 import { resetStatusFilter } from '../../redux/filters/slice';
+import NotFound from 'components/NotFound/NotFound';
 
 const Favorites = () => {
   const favoritesIds = useSelector(selectFavoritesId);
@@ -19,13 +20,18 @@ const Favorites = () => {
     dispatch(resetStatusFilter());
   }, [dispatch]);
 
-  let FavoritesCards = adverts.filter(item => {
+  let favoriteCards = adverts.filter(item => {
     return favoritesIds.includes(item.id);
   });
+  console.log(favoriteCards);
   return (
     <Container>
       <FilterBar />
-      <AdvertsWrapper items={FavoritesCards} />
+      {favoriteCards.length < 1 ? (
+        <NotFound>You haven't added anything to your favorites yet</NotFound>
+      ) : (
+        <AdvertsWrapper items={favoriteCards} />
+      )}
     </Container>
   );
 };
